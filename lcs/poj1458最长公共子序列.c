@@ -12,16 +12,16 @@ int main(int argc, char const *argv[])
 	// printf("%s\n", first_string);
 	// printf("%s\n", second_string);
 
-	while(scanf("%s%s", first_string, second_string) != EOF)
+	while(scanf("%s%s", first_string, second_string) != EOF) //一直读到文件末尾
 	{
-		for (int i = 1; i <= strlen(first_string); ++i)
-			for (int j = 1; j <= strlen(second_string); ++j)
+		for (int i = 1; i <= strlen(first_string); ++i)	//第一格字符串的每个字符
+			for (int j = 1; j <= strlen(second_string); ++j) //依次跟第二个字符串的每个字符进行比较
 			{
-				if (first_string[i-1] == second_string[j-1])
-					solution_space[i][j] = solution_space[i-1][j-1] + 1;
+				if (first_string[i-1] == second_string[j-1])	//如果两串字符相同
+					solution_space[i][j] = solution_space[i-1][j-1] + 1; //比上一个状态长度多1
 				else
 				{
-					if (solution_space[i][j-1] > solution_space[i-1][j])
+					if (solution_space[i][j-1] > solution_space[i-1][j]) //字符串不同则上个状态最长的那一个状态
 						solution_space[i][j] = solution_space[i][j-1];
 					else
 						solution_space[i][j] = solution_space[i-1][j];
@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
 				// 	printf("\n");
 			}
 	
-		printf("%d\n", solution_space[strlen(first_string)][strlen(second_string)]);
+		printf("%d\n", solution_space[strlen(first_string)][strlen(second_string)]); //最长公共子序列
 	}	
 	
 	return 0;
